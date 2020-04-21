@@ -60,6 +60,42 @@ class Interfaz {
     }
 
     mostrarConversion(resultado, moneda, crypto) {
-        console.log(resultado[crypto][moneda]);
+
+        /* Ocultar El Resultado Anterior */
+        const resultadoAnterior = document.querySelector('#resultado > div');
+
+        if (resultadoAnterior) {
+            resultadoAnterior.remove();
+        }
+
+        const datosMoneda = resultado[crypto][moneda];
+
+        let price = datosMoneda.PRICE.toFixed(2);
+        let porcentaje = datosMoneda.CHANGEPCTDAY.toFixed(2);
+        /* Se debe multiplicar por mil para que funcione la conversion De Un Formato De Fecha Tipo UNIX*/
+        let actualizado = new Date(datosMoneda.LASTUPDATE * 1000).toLocaleDateString('COL');
+
+        let templateHTML = `
+            <div class="card bg-warning" 
+                <div class="card-body text-light">
+                    <h2 class="card-title">Resultado:</h2>
+                    <p>El Precio De ${datosMoneda.FROMSYMBOL} A Moneda ${datosMoneda.TOSYMBOL} Es De: ${price}</p>
+                    <p>Variación Último Día: % ${porcentaje}</p>
+                    <p>Ultima Actualización: ${actualizado}</p>
+                </div>
+            </div>
+        `;
+
+        this.mostrarOcultarSpinner('block');
+
+        setTimeout(() => {
+            document.querySelector('#resultado').innerHTML = templateHTML;
+            this.mostrarOcultarSpinner('none');
+        }, 3000);
+    }
+
+    mostrarOcultarSpinner(display) {
+        const spinner = document.querySelector('.contenido-spinner');
+        spinner.style.display = display;
     }
 }
