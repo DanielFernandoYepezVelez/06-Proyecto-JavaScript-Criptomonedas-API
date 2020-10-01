@@ -13,19 +13,19 @@ class Interfaz {
             .then(monedas => {
 
                 /* Objeto Anidado O Super Objeto Retornado */
-                console.log(monedas);
+                // console.log(monedas);
 
                 /* Objeto Con La Respuesta De La API */
-                console.log(monedas.formatoMonedas);
+                // console.log(monedas.formatoMonedas);
 
                 /* Valor Obtenido De La API */
-                console.log(monedas.formatoMonedas.Data);
+                // console.log(monedas.formatoMonedas.Data);
 
                 /* La API Me retorna Un Objeto, Y Yo No Se Como Recorrer Un Objeto, Pero Si Se Como Recorrer Un Array, Entonces Convierto Un Objeto A Un Array */
                 const convertirObjeto = Object.entries(monedas.formatoMonedas.Data);
 
                 /* Mostrando La Conversión De Objeto A Un Array */
-                console.log(convertirObjeto);
+                // console.log(convertirObjeto);
 
                 const fragmento = document.createDocumentFragment();
                 const select = document.querySelector('#criptomoneda');
